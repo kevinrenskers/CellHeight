@@ -3,7 +3,7 @@ import UIKit
 class Cell: UICollectionViewCell {
   @IBOutlet private var detailsView: UIView!
 
-  var resize: (() -> Void)?
+  var collectionView: UICollectionView?
 
   override func awakeFromNib() {
     super.awakeFromNib()
@@ -11,7 +11,9 @@ class Cell: UICollectionViewCell {
   }
 
   @IBAction private func toggleDetails() {
-    detailsView.isHidden.toggle()
-    resize?()
+    UIView.animate(withDuration: 2) {
+      self.detailsView.isHidden.toggle()
+      self.collectionView?.performBatchUpdates({}, completion: nil)
+    }
   }
 }

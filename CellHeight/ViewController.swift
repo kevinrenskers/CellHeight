@@ -31,11 +31,7 @@ extension ViewController: UICollectionViewDataSource {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! Cell
-    cell.resize = { [weak self] in
-      UIView.animate(withDuration: 2) {
-        self?.collectionView.collectionViewLayout.invalidateLayout()
-      }
-    }
+    cell.collectionView = collectionView
     return cell
   }
 }
